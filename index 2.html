@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CBTis 101 Guadalupe Victoria</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    @keyframes subirBajar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulsar {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .bienvenida {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: linear-gradient(to bottom right, #800020, #a52a2a);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease;
+      z-index: 9999;
+    }
+
+    .bienvenida h1 {
+      font-style: italic;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .bienvenida button {
+      padding: 12px 24px;
+      border: none;
+      background-color: white;
+      color: #800020;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-style: italic;
+    }
+
+    .bienvenida button:hover {
+      background-color: #eee;
+    }
+
+    #contenido {
+      display: none;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #800020;
+    }
+
+    .botones-especialidades {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+
+    .boton-especialidad {
+      width: 150px;
+      height: 150px;
+      background-color: #800020;
+      color: white;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      font-weight: bold;
+      animation: pulsar 2s infinite;
+    }
+
+    .boton-especialidad:hover {
+      transform: scale(1.1);
+    }
+
+    #infoEspecialidad {
+      margin-top: 30px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      color: #333;
+    }
+
+    .boton-eventos {
+      margin: 40px auto;
+      max-width: 300px;
+      background-color: #800020;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: subirBajar 2s infinite;
+    }
+
+    #portadaEventos {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: linear-gradient(to bottom right, #fff0f0, #ffeaea);
+      z-index: 9998;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #portadaEventos h2 {
+      font-size: 3em;
+      color: #800020;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    #portadaEventos button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      background-color: #800020;
+      color: white;
+      cursor: pointer;
+      font-style: italic;
+      transition: transform 0.3s;
+    }
+
+    #portadaEventos button:hover {
+      transform: scale(1.05);
+    }
+
+    #eventosCBTis {
+      display: none;
+      margin-top: 30px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      color: #333;
+      line-height: 1.6em;
+    }
+
+    #eventosCBTis h3 {
+      color: #800020;
+      margin-top: 20px;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 1em;
+    }
+
+    footer a {
+      display: block;
+      color: #800020;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bienvenida" id="pantallaBienvenida">
+    <h1>Bienvenidos al CBTis No. 101 "Guadalupe Victoria"</h1>
+    <button onclick="mostrarContenido()">Entrar</button>
+  </div>
+
+  <div id="portadaEventos">
+    <h2>🎉 Eventos del CBTis 101 🎉</h2>
+    <button onclick="mostrarEventosReal()">Ver Detalles</button>
+  </div>
+
+  <div id="contenido">
+    <h2>Historia del CBTis No. 101 \"Guadalupe Victoria\"</h2>
+    <p>
+      El CBTis No. 101 nace un día 1 de octubre de 1976 bajo el nombre de Centro de Estudios Científicos y Tecnológicos (CECyT) No. 341. A la par también nace la Escuela Técnica Industrial y Comercial No. 338, que hoy es una secundaria.<br><br>
+      Las actividades se iniciaron en la primaria General Heriberto Jara Corona gracias al Profr. Epifanio Méndez.<br><br>
+      El terreno actual fue donado por altruistas como Cayetano Rojas Soriano, Pánfilo Guzmán y Adán Lozano Meza. La inauguración oficial fue el 2 de octubre de 1978.<br><br>
+      En sus inicios la escuela tuvo 13 docentes y 12 administrativos, y empezó con 102 estudiantes. Las especialidades técnicas iniciales fueron Electromecánica y Fermentaciones.<br><br>
+      Actualmente el CBTis 101 es la máxima casa de estudios de Motzorongo, junto al Cobaev de Omealca. Ofrece especialidades en Mecánica, Alimentos, Contabilidad y Análisis Clínicos.
+    </p>
+    <img src="" alt="">
+
+    <div class="botones-especialidades">
+      <div class="boton-especialidad" onclick="mostrarEspecialidad('clinicos')">Análisis Clínicos</div>
+      <div class="boton-especialidad" onclick="mostrarEspecialidad('alimentos')">Alimentos</div>
+      <div class="boton-especialidad" onclick="mostrarEspecialidad('mecanica')">Mecánica</div>
+      <div class="boton-especialidad" onclick="mostrarEspecialidad('contabilidad')">Contabilidad</div>
+    </div>
+
+    <div id="infoEspecialidad"></div>
+
+    <h2 style="margin-top: 50px;">Costos por Especialidad</h2>
+    <table style="width:100%; max-width: 600px; margin: 20px auto; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden;">
+      <thead style="background-color: #800020; color: white;">
+        <tr><th style="padding: 10px;">Especialidad</th><th style="padding: 10px;">Costo (MXN)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding: 10px; text-align: center;">Análisis Clínicos</td><td style="padding: 10px; text-align: center;">$1400</td></tr>
+        <tr><td style="padding: 10px; text-align: center;">Alimentos</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
+        <tr><td style="padding: 10px; text-align: center;">Mecánica</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
+        <tr><td style="padding: 10px; text-align: center;">Contabilidad</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
+      </tbody>
+    </table>
+
+    <div onclick="abrirPortadaEventos()" class="boton-eventos">🎉 Ver Eventos</div>
+
+    <div id="eventosCBTis">
+      <h2>🎉 Eventos que realiza el CBTis 101</h2>
+      <p>El CBTis 101 promueve la formación integral...</p>
+      <h3>🏅 Concursos Cívicos</h3>
+      <ul>
+        <li>Concurso de oratoria</li>
+        <li>Olimpiadas de matemáticas</li>
+        <li>Concurso de escoltas</li>
+        <li>Concurso de himnos</li>
+        <li>Olimpiadas de ajedrez</li>
+      </ul>
+      <h3>🏐 Concursos Deportivos</h3>
+      <ul>
+        <li>Fútbol</li>
+        <li>Voleibol</li>
+        <li>Básquetbol</li>
+      </ul>
+      <h3>🎭 Eventos Recreativos y para la Salud</h3>
+      <ul>
+        <li>Concurso de disfraces</li>
+        <li>Concurso de coreografías navideñas</li>
+        <li>Votaciones Rey y Reina</li>
+        <li>Carrera por la salud</li>
+      </ul>
+    </div>
+
+    <footer>
+       <a href="https://www.facebook.com/CBTIS101MOTZORONGO/?locale=es_LA" style="color: #ff2a00;" target="_blank" rel="noopener noreferrer">Facebook</a> 
+           <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.036832947019!2d-96.90156498466706!3d18.60741458788942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da8e3918e87ecf%3A0xd930ef5aa1b33f5!2sCBTis%20101%20Motzorongo!5e0!3m2!1ses-419!2smx!4v1684748526938!5m2!1ses-419!2smx" style="color: #ff2a00;" target="_blank" rel="noopener noreferrer">ubicacion</a> 
+    </footer>
+  </div>
+
+  <script src=\"https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js\"></script>
+  <script>
+    function mostrarContenido() {
+      const bienvenida = document.getElementById('pantallaBienvenida');
+      bienvenida.style.opacity = '0';
+      setTimeout(() => {
+        bienvenida.style.display = 'none';
+        document.getElementById('contenido').style.display = 'block';
+      }, 1000);
+    }
+
+    function mostrarEspecialidad(tipo) {
+      const info = {
+        clinicos: `<h3>👩‍🔬 Técnico en Laboratorio Clínico</h3>
+        <p><strong>Duración:</strong> 6 semestres (3 años)</p>
+        <p><strong>Perfil:</strong> Realiza análisis de sangre, orina, heces y otras muestras; maneja equipo de laboratorio y aplica normas de seguridad.</p>
+        <p><strong>Materias:</strong> Hematología, microbiología, química clínica, parasitología, bioseguridad.</p>
+        <p><strong>Campo laboral:</strong> Hospitales, laboratorios clínicos, bancos de sangre, investigación.</p>
+        <p><strong>Incluye:</strong> Prácticas profesionales y servicio social.</p>
+        <p><strong>Salida:</strong> Puedes trabajar o seguir una carrera universitaria (medicina, química, biología, etc.).</p>`,
+        
+        alimentos: `<h3>🍽 Técnico en Alimentos y Bebidas</h3>
+        <p><strong>Duración:</strong> 6 semestres</p>
+        <p><strong>Perfil:</strong> Prepara alimentos, bebidas, postres y gestiona servicios de comedor con normas de higiene.</p>
+        <p><strong>Materias:</strong> Cocina mexicana e internacional, panadería, coctelería, servicio de comedor, higiene y seguridad.</p>
+        <p><strong>Campo laboral:</strong> Restaurantes, hoteles, catering, cafeterías, bares, cruceros.</p>
+        <p><strong>Ventaja:</strong> Empleabilidad rápida o iniciar tu propio negocio.</p>`,
+        
+        mecanica: `<h3>⚙ Técnico en Mecánica Industrial</h3>
+        <p><strong>Duración:</strong> 6 semestres</p>
+        <p><strong>Perfil:</strong> Fabrica, instala y da mantenimiento a maquinaria industrial con herramientas manuales y automáticas.</p>
+        <p><strong>Materias:</strong> Dibujo técnico, máquinas-herramienta, soldadura, neumática e hidráulica, mantenimiento.</p>
+        <p><strong>Campo laboral:</strong> Industrias manufactureras, metalmecánicas, mantenimiento de equipos.</p>
+        <p><strong>Ventaja:</strong> Alta demanda; opción de estudiar ingeniería mecánica o afines.</p>`,
+        
+        contabilidad: `<h3>📊 Técnico en Contabilidad</h3>
+        <p><strong>Duración:</strong> 6 semestres</p>
+        <p><strong>Perfil:</strong> Maneja registros contables, prepara estados financieros, calcula impuestos y analiza costos.</p>
+        <p><strong>Materias:</strong> Contabilidad, fiscal, auditoría, administración, informática contable.</p>
+        <p><strong>Campo laboral:</strong> Empresas, despachos contables, bancos, oficinas gubernamentales.</p>
+        <p><strong>Ventaja:</strong> Puedes trabajar como auxiliar contable o seguir una carrera universitaria en contaduría o administración.</p>`
+      };
+
+      const infoDiv = document.getElementById('infoEspecialidad');
+      infoDiv.innerHTML = info[tipo] || '';
+      infoDiv.style.display = 'block';
+    }
+
+    function abrirPortadaEventos() {
+      document.getElementById('portadaEventos').style.display = 'flex';
+      lanzarConfetiLados();
+    }
+
+    function mostrarEventosReal() {
+      document.getElementById('portadaEventos').style.display = 'none';
+      document.getElementById('eventosCBTis').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('eventosCBTis').offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function lanzarConfetiLados() {
+      let duration = 3 * 1000;
+      let animationEnd = Date.now() + duration;
+      let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+      let interval = setInterval(function() {
+        let timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        confetti(Object.assign({}, defaults, { particleCount: 15, origin: { x: 0, y: Math.random() } }));
+        confetti(Object.assign({}, defaults, { particleCount: 15, origin: { x: 1, y: Math.random() } }));
+      }, 250);
+    }
+  </script>
+</body>
+</html>
