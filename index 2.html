@@ -1,341 +1,249 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>CBTis 101 Guadalupe Victoria</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-    }
+<!-- saved from url=(0051)http://127.0.0.1:5500/IMAGES/index_files/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBTIS N0.101</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;background-color:#fff5f5;
+            color: #333;
+        }
+        header {
+            background-color: #400808;
+            color: beige; 
+            text-align: center;
+            padding: 30px;
+        }
+        header h1 { 
+            margin: 0;
+            font-size: 36px;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1000px; 
+            margin: auto;
+        }
+        h2 {
+            color: #400808;
+            border-bottom: 4px solid #ccc;
+            padding-bottom: 10px;
+        }
+         .carrera {
+            background-color: #fff;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 15px solid #4f0202;
+            border-radius: 10px;
+        }
+        .carrera h3 {
+            margin-top: 0;
+        }
+        .icono {
+            font-size: 25px;
+            margin-right: 7px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li::before{
+            content: " ";
+            margin-right: 7px;
+        }
+        a.boton-video {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #400808;
+            color: beige;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+        .botons-especialidades {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
 
-    @keyframes subirBajar {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+        .boton-especialidad {
+            width: 250px;
+            height: 100px;
+            background-color: #400808;
+            color: beige;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-weight: bold;
+            animation: pulsar 2s infinite;
+        }
+        .boton-especialidad:hover{
+            transform: scale(1,1);
+        }
+        footer {
+            background-color: #400808;
+            color: beige;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
 
-    @keyframes pulsar {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .bienvenida {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100vh;
-      background: linear-gradient(to bottom right, #800020, #a52a2a);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 1s ease;
-      z-index: 9999;
-    }
-
-    .bienvenida h1 {
-      font-style: italic;
-      font-size: 3em;
-      margin-bottom: 20px;
-    }
-
-    .bienvenida button {
-      padding: 12px 24px;
-      border: none;
-      background-color: white;
-      color: #800020;
-      font-size: 1.2em;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-style: italic;
-    }
-
-    .bienvenida button:hover {
-      background-color: #eee;
-    }
-
-    #contenido {
-      display: none;
-      padding: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h2 {
-      color: #800020;
-    }
-
-    .botones-especialidades {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-top: 30px;
-    }
-
-    .boton-especialidad {
-      width: 150px;
-      height: 150px;
-      background-color: #800020;
-      color: white;
-      margin: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
-      font-weight: bold;
-      animation: pulsar 2s infinite;
-    }
-
-    .boton-especialidad:hover {
-      transform: scale(1.1);
-    }
-
-    #infoEspecialidad {
-      margin-top: 30px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      display: none;
-      color: #333;
-    }
-
-    .boton-eventos {
-      margin: 40px auto;
-      max-width: 300px;
-      background-color: #800020;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 15px;
-      cursor: pointer;
-      font-size: 1.2em;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      animation: subirBajar 2s infinite;
-    }
-
-    #portadaEventos {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100vh;
-      background: linear-gradient(to bottom right, #fff0f0, #ffeaea);
-      z-index: 9998;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    #portadaEventos h2 {
-      font-size: 3em;
-      color: #800020;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-
-    #portadaEventos button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border: none;
-      border-radius: 10px;
-      background-color: #800020;
-      color: white;
-      cursor: pointer;
-      font-style: italic;
-      transition: transform 0.3s;
-    }
-
-    #portadaEventos button:hover {
-      transform: scale(1.05);
-    }
-
-    #eventosCBTis {
-      display: none;
-      margin-top: 30px;
-      background-color: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      color: #333;
-      line-height: 1.6em;
-    }
-
-    #eventosCBTis h3 {
-      color: #800020;
-      margin-top: 20px;
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      font-size: 1em;
-    }
-
-    footer a {
-      display: block;
-      color: #800020;
-      text-decoration: none;
-      margin: 5px 0;
-    }
-  </style>
+    </style>
 </head>
 <body>
+    <header>
+        <marquee><h1>CBTIS N0.101
+           "GUADALUPE VICTORIA"</h1></marquee>
+    </header>
 
-  <div class="bienvenida" id="pantallaBienvenida">
-    <h1>Bienvenidos al CBTis No. 101 "Guadalupe Victoria"</h1>
-    <button onclick="mostrarContenido()">Entrar</button>
-  </div>
+    <section>
+        <h2> ¿NUESTRO INICIO Y ACTUALIDAD?</h2>
+        <p>El Centro De Bachillerato Tecnologico Inductrial</p>
+           <p>Nace el dia 1°. de octubre de 1976 bajo el nombre de "Centro De Estudios Cientifficos Y Tecnologicos(CECyT) N0.341 "
+            En su inicio la escuela empezo con las siguientes especiaolidades "ELECTROMECANICA Y FERMENTACIONES"...
+        </p>
+        <h2></h2>
+        <h2>ESPECIALIDAD: ELECTROMECANICA </h2>
+        <p>ALUMNOS: 65</p>
+        <p>GRUPO: 2</p>
+        <p>TURNOS: MATUTINO</p>
+        <h2></h2>
+        <h2>ESPECIALIDAD: FERMENTACIONES</h2>
+        <p>ALUMNOA: 40</p>
+        <p>GRUPO: 1</p>
+        <p>TURNOS: MATUTINO</p>
+        <h2></h2>
+        <p>Se buacaba que no solo los jovenes aprendieran teoria, sino que los jovenes se preperaran para la vida </p>
+        <p>En la actualidad el CBTS N0.101. Acepta a mas de 200 jueves que buscan aprender desde hacer un postre hasta hacer un toma de sangre.</p>
+        <p>Nuestra institucion es muy competitiva, ya que es muy invitada a diversos concursos fuera de la institucion ¡PUEDE SER UNA ESPERIENCIA INOLVIDABLE PARA TI!</p>
 
-  <div id="portadaEventos">
-    <h2>🎉 Eventos del CBTis 101 🎉</h2>
-    <button onclick="mostrarEventosReal()">Ver Detalles</button>
-  </div>
-
-  <div id="contenido">
-    <h2>Historia del CBTis No. 101 \"Guadalupe Victoria\"</h2>
-    <p>
-      El CBTis No. 101 nace un día 1 de octubre de 1976 bajo el nombre de Centro de Estudios Científicos y Tecnológicos (CECyT) No. 341. A la par también nace la Escuela Técnica Industrial y Comercial No. 338, que hoy es una secundaria.<br><br>
-      Las actividades se iniciaron en la primaria General Heriberto Jara Corona gracias al Profr. Epifanio Méndez.<br><br>
-      El terreno actual fue donado por altruistas como Cayetano Rojas Soriano, Pánfilo Guzmán y Adán Lozano Meza. La inauguración oficial fue el 2 de octubre de 1978.<br><br>
-      En sus inicios la escuela tuvo 13 docentes y 12 administrativos, y empezó con 102 estudiantes. Las especialidades técnicas iniciales fueron Electromecánica y Fermentaciones.<br><br>
-      Actualmente el CBTis 101 es la máxima casa de estudios de Motzorongo, junto al Cobaev de Omealca. Ofrece especialidades en Mecánica, Alimentos, Contabilidad y Análisis Clínicos.
-    </p>
-    <img src="" alt="">
-
-    <div class="botones-especialidades">
-      <div class="boton-especialidad" onclick="mostrarEspecialidad('clinicos')">Análisis Clínicos</div>
-      <div class="boton-especialidad" onclick="mostrarEspecialidad('alimentos')">Alimentos</div>
-      <div class="boton-especialidad" onclick="mostrarEspecialidad('mecanica')">Mecánica</div>
-      <div class="boton-especialidad" onclick="mostrarEspecialidad('contabilidad')">Contabilidad</div>
-    </div>
-
-    <div id="infoEspecialidad"></div>
-
-    <h2 style="margin-top: 50px;">Costos por Especialidad</h2>
-    <table style="width:100%; max-width: 600px; margin: 20px auto; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden;">
-      <thead style="background-color: #800020; color: white;">
-        <tr><th style="padding: 10px;">Especialidad</th><th style="padding: 10px;">Costo (MXN)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td style="padding: 10px; text-align: center;">Análisis Clínicos</td><td style="padding: 10px; text-align: center;">$1400</td></tr>
-        <tr><td style="padding: 10px; text-align: center;">Alimentos</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
-        <tr><td style="padding: 10px; text-align: center;">Mecánica</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
-        <tr><td style="padding: 10px; text-align: center;">Contabilidad</td><td style="padding: 10px; text-align: center;">$1300</td></tr>
-      </tbody>
-    </table>
-
-    <div onclick="abrirPortadaEventos()" class="boton-eventos">🎉 Ver Eventos</div>
-
-    <div id="eventosCBTis">
-      <h2>🎉 Eventos que realiza el CBTis 101</h2>
-      <p>El CBTis 101 promueve la formación integral...</p>
-      <h3>🏅 Concursos Cívicos</h3>
-      <ul>
-        <li>Concurso de oratoria</li>
-        <li>Olimpiadas de matemáticas</li>
-        <li>Concurso de escoltas</li>
-        <li>Concurso de himnos</li>
-        <li>Olimpiadas de ajedrez</li>
-      </ul>
-      <h3>🏐 Concursos Deportivos</h3>
-      <ul>
-        <li>Fútbol</li>
-        <li>Voleibol</li>
-        <li>Básquetbol</li>
-      </ul>
-      <h3>🎭 Eventos Recreativos y para la Salud</h3>
-      <ul>
-        <li>Concurso de disfraces</li>
-        <li>Concurso de coreografías navideñas</li>
-        <li>Votaciones Rey y Reina</li>
-        <li>Carrera por la salud</li>
-      </ul>
-    </div>
-
-    <footer>
-       <a href="https://www.facebook.com/CBTIS101MOTZORONGO/?locale=es_LA" style="color: #ff2a00;" target="_blank" rel="noopener noreferrer">Facebook</a> 
-           <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.036832947019!2d-96.90156498466706!3d18.60741458788942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da8e3918e87ecf%3A0xd930ef5aa1b33f5!2sCBTis%20101%20Motzorongo!5e0!3m2!1ses-419!2smx!4v1684748526938!5m2!1ses-419!2smx" style="color: #ff2a00;" target="_blank" rel="noopener noreferrer">ubicacion</a> 
-    </footer>
-  </div>
-
-  <script src=\"https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js\"></script>
-  <script>
-    function mostrarContenido() {
-      const bienvenida = document.getElementById('pantallaBienvenida');
-      bienvenida.style.opacity = '0';
-      setTimeout(() => {
-        bienvenida.style.display = 'none';
-        document.getElementById('contenido').style.display = 'block';
-      }, 1000);
-    }
-
-    function mostrarEspecialidad(tipo) {
-      const info = {
-        clinicos: `<h3>👩‍🔬 Técnico en Laboratorio Clínico</h3>
-        <p><strong>Duración:</strong> 6 semestres (3 años)</p>
-        <p><strong>Perfil:</strong> Realiza análisis de sangre, orina, heces y otras muestras; maneja equipo de laboratorio y aplica normas de seguridad.</p>
-        <p><strong>Materias:</strong> Hematología, microbiología, química clínica, parasitología, bioseguridad.</p>
-        <p><strong>Campo laboral:</strong> Hospitales, laboratorios clínicos, bancos de sangre, investigación.</p>
-        <p><strong>Incluye:</strong> Prácticas profesionales y servicio social.</p>
-        <p><strong>Salida:</strong> Puedes trabajar o seguir una carrera universitaria (medicina, química, biología, etc.).</p>`,
+    </section>
         
-        alimentos: `<h3>🍽 Técnico en Alimentos y Bebidas</h3>
-        <p><strong>Duración:</strong> 6 semestres</p>
-        <p><strong>Perfil:</strong> Prepara alimentos, bebidas, postres y gestiona servicios de comedor con normas de higiene.</p>
-        <p><strong>Materias:</strong> Cocina mexicana e internacional, panadería, coctelería, servicio de comedor, higiene y seguridad.</p>
-        <p><strong>Campo laboral:</strong> Restaurantes, hoteles, catering, cafeterías, bares, cruceros.</p>
-        <p><strong>Ventaja:</strong> Empleabilidad rápida o iniciar tu propio negocio.</p>`,
-        
-        mecanica: `<h3>⚙ Técnico en Mecánica Industrial</h3>
-        <p><strong>Duración:</strong> 6 semestres</p>
-        <p><strong>Perfil:</strong> Fabrica, instala y da mantenimiento a maquinaria industrial con herramientas manuales y automáticas.</p>
-        <p><strong>Materias:</strong> Dibujo técnico, máquinas-herramienta, soldadura, neumática e hidráulica, mantenimiento.</p>
-        <p><strong>Campo laboral:</strong> Industrias manufactureras, metalmecánicas, mantenimiento de equipos.</p>
-        <p><strong>Ventaja:</strong> Alta demanda; opción de estudiar ingeniería mecánica o afines.</p>`,
-        
-        contabilidad: `<h3>📊 Técnico en Contabilidad</h3>
-        <p><strong>Duración:</strong> 6 semestres</p>
-        <p><strong>Perfil:</strong> Maneja registros contables, prepara estados financieros, calcula impuestos y analiza costos.</p>
-        <p><strong>Materias:</strong> Contabilidad, fiscal, auditoría, administración, informática contable.</p>
-        <p><strong>Campo laboral:</strong> Empresas, despachos contables, bancos, oficinas gubernamentales.</p>
-        <p><strong>Ventaja:</strong> Puedes trabajar como auxiliar contable o seguir una carrera universitaria en contaduría o administración.</p>`
-      };
+        <section>
+            <details>
+            <h2></h2>
+                <summary><div class="boton-especialidad" onclick="mostrarEspecialidad(&#39;CARRERAS&#39;)">CARRERAS TECNICAS</div></summary>
 
-      const infoDiv = document.getElementById('infoEspecialidad');
-      infoDiv.innerHTML = info[tipo] || '';
-      infoDiv.style.display = 'block';
-    }
+            <div class="carrera ">
+                <h3><span class="icono">👩🏻‍💻💼</span>CONTABILIDAD</h3>
+                <p>Esta carrera es para ti, ¿te facinan el conocer el manejo y administracion de recuersos financieros?</p>
+                <p>Perfecto esta carrera es para ti...</p>
+                <p>Durante 6 semestres (3 años). Podras estudiar esta maravillosa especialidad con un costo de $1,300 MX. Por semestre.</p>
+                <p>¿SABES LO FACINANTE DE ESTA ESPECIALIDAD?</p>
+                <p>!AL GRADUAARTE PUEDES SOLICITAR TU TITULO¡</p>
+                <a class="boton-video" href="https://www.facebook.com/share/v/1C6d2jS4sq/?mibextid=wwXIfr" target="_blank">📹 Ver...</a>
+            </div>
 
-    function abrirPortadaEventos() {
-      document.getElementById('portadaEventos').style.display = 'flex';
-      lanzarConfetiLados();
-    }
+            <div class="carrera">
+                <h3><span class="icono">👩🏻‍⚕🧫🔬</span>LABORATORISTA CLINICO</h3>
+            <p>Esta carrera es para ti, si te gustaria el area de la salud y un poco de su rama.</p>
+            <p>En esta especialidad aprenderas la teoria, las tecnicas para realizar una tomar muestras, a utilizar un microscopio correctamente,a observar bacterias, a realizar cultivos etc...</p>
+            <p>Durante 6 semestres (3 años). Podras estudiar esta genial especialidad con un costo de $1,400MX. Por semestre.</p>
+            <a class="boton-video" href="https://www.facebook.com/share/v/197WAfHd8W/?mibextid=wwXIfr" target="_blank">📹Ver...</a>
+            </div>
 
-    function mostrarEventosReal() {
-      document.getElementById('portadaEventos').style.display = 'none';
-      document.getElementById('eventosCBTis').style.display = 'block';
-      window.scrollTo({ top: document.getElementById('eventosCBTis').offsetTop - 20, behavior: 'smooth' });
-    }
+            <div class="carrera">
+                <h3><span class="icono">👩🏻‍🏭🛠⚙</span>MECANICA INDUSTRIAL</h3>
+                <p>¿Te gustarria aprender como funcionan las maquinas industriales?</p>
+                <p>Esta carrera es para ti, aprenderas a realizar una caja de regiatro, a reperar las grandes maquinas </p>
+                <p>Durante 6 semestres (3 años). Podras estudiar esta maravillosa especialidad con un costo de $1,300 MX. Por semestre.</p>
+                <a class="boton-video" href="https://www.facebook.com/share/v/1AtgSMXaj2/?mibextid=wwXIfr" target="_blank">📹Ver...</a>
+            </div>
 
-    function lanzarConfetiLados() {
-      let duration = 3 * 1000;
-      let animationEnd = Date.now() + duration;
-      let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+            <div class="carrera">
+                <h3><span class="icono">👩🏻‍🍳🍛</span>PRODUCCION INDUSTRIAL DE ALIMENTOS</h3>
+                <p>¿Te gustaria aprender a realizar diversos alimentos o postreas?</p>
+                <p>Esta carrera es para ti, en esta carrera aprenderas a realizar diversos alimentos, donas, cuernitos rellenos, roles de canela, costilla enchilada y mas...</p>
+                <p>Durante 6 semestres (3 años).Podras estudiar esta genial especialidad por un costo de $1,300 MX. Por semestre.</p>
+                <a class="boton-video" href="https://www.facebook.com/share/v/1AFHrymHpC/?mibextid=wwXIfr" target="_blank">📹Ver...</a>
+            </div>
+            </details>
+        </section>
 
-      let interval = setInterval(function() {
-        let timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
 
-        confetti(Object.assign({}, defaults, { particleCount: 15, origin: { x: 0, y: Math.random() } }));
-        confetti(Object.assign({}, defaults, { particleCount: 15, origin: { x: 1, y: Math.random() } }));
-      }, 250);
-    }
-  </script>
-</body>
-</html>
+        <section>
+        <details>
+          <summary><div class="boton-especialidad" onclick="mostrarEspecialidad(EVENTOS)">EVENTOS🪇</div></summary>
+           <h2><p>Semana Del Estudiante 🎊</p></h2>
+            <li><a class="boton-video" href="https://www.facebook.com/share/v/198sevA5rc/?mibextid=wwXIfr">DIA SIN MOCHILA🎒❌</a></li>
+            <p></p><li><a class="boton-video" href="https://www.facebook.com/share/v/1DR4LRrWiM/?mibextid=wwXIfr">DIA DE PEINADO LOCO O SOMBRERO LOCO🎭👒</a></li><p></p>
+            <p></p><li><a class="boton-video" href="https://www.facebook.com/share/v/1UatTnABCV/?mibextid=wwXIfr">DIA DE PIJAMAS 🌟</a></li><p></p>
+            <p></p><li><a class="boton-video" href="https://www.facebook.com/share/v/16ndw9V5j6/?mibextid=wwXIfr">CARRERA POR LA PAZ 🏃🏻‍♀‍➡🏃🏽‍♀‍➡</a></li><p></p>
+            <p></p><li><a class="boton-video" href="https://www.facebook.com/share/v/1UatTnABCV/?mibextid=wwXIfr">JUEGOS CON AGUA 🫧</a></li><p></p>
+
+        </details>
+        </section>
+
+        <section>
+            <details>
+                <summary><div class="boton-especialidad" onclick="mostrarEspecialidad(contactos)">INF. OFICIAL PARA CONTACTARNOS📲</div></summary>
+                <h2><p></p></h2>
+                <li><a class="boton-video" href="https://maps.apple.com/place?address=Carretera%20Estatal%20C%C3%B3rdoba%20-%20Tezonapa,%20Cantarranas,%2095094%20Motzorongo,%20Ver.,%20M%C3%A9xico&amp;coordinate=18.636118,-96.720528&amp;name=CBTIS%20101&amp;place-id=I859F82A78CF51107&amp;map=h">UBICACION 📍 </a></li>
+                <li><a class="boton-video" href="https://www.facebook.com/share/1EZxbCoksU/?mibextid=wwXIfr">PAGINA OFICIAL°📱</a></li>
+
+            </details>
+        </section>
+
+        <section>
+            <datalist>
+                <summary><div class="boton-especialidad" onclick="mostrarEspecialidad(cconcursos)">CONCUROS ESTATALES</div></summary>
+                <h2><p>DEPORTIVOS</p></h2>
+                <p>BASKETBALL</p>
+                <p>VOLEIBOL</p>
+                <p>FUTBOL</p>
+                
+            </datalist>
+        </section>
+
+
+        <footer>
+            <marquee>©Derechos protegidos por el CBTIS N0.101.MOTZORONGO.VERACRUZ°</marquee>
+        </footer>
+    
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
